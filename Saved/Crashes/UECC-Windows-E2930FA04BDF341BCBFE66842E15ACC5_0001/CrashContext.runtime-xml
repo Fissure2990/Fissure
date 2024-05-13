@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FGenericCrashContext>
+	<RuntimeProperties>
+		<CrashVersion>3</CrashVersion>
+		<ExecutionGuid>170B1173454F51184D5ACDB1495322F4</ExecutionGuid>
+		<CrashGUID>UECC-Windows-E2930FA04BDF341BCBFE66842E15ACC5_0001</CrashGUID>
+		<IsEnsure>true</IsEnsure>
+		<IsStall>false</IsStall>
+		<IsAssert>false</IsAssert>
+		<CrashType>Ensure</CrashType>
+		<ErrorMessage>Ensure condition failed: InParent == nullptr || !InParent-&gt;IsAttachedTo(this) [File:D:\UE5_3_2\Engine\Source\Runtime\Engine\Private\Components\SceneComponent.cpp] [Line: 1870] Setting up attachment would create a cycle. Stack: 0x00007ffa78fc6630 UnrealEditor-Engine.dll!USceneComponent::SetupAttachment() [D:\UE5_3_2\Engine\Source\Runtime\Engine\Private\Components\SceneComponent.cpp:1870] 0x00007ffa54a564e7 UnrealEditor-Test.dll!AMyCharacter::AMyCharacter() [D:\AssortRock\Test\Source\Test\MyCharacter.cpp:37] 0x00007ffa8aded412 UnrealEditor-CoreUObject.dll!UClass::CreateDefaultObject() [D:\UE5_3_2\Engine\Source\Runtime\CoreUObject\Private\UObject\Class.cpp:4390] 0x00007ffa8ae0d163 UnrealEditor-CoreUObject.dll!UClass::InternalCreateDefaultObjectWrapper() [D:\UE5_3_2\Engine\Source\Runtime\CoreUObject\Private\UObject\Class.cpp:4987] 0x00007ffa8b13e9d9 UnrealEditor-CoreUObject.dll!UObjectLoadAllCompiledInDefaultProperties() [D:\UE5_3_2\Engine\Source\Runtime\CoreUObject\Private\UObject\UObjectBase.cpp:825] 0x00007ffa8b11b410 UnrealEditor-CoreUObject.dll!ProcessNewlyLoadedUObjects() [D:\UE5_3_2\Engine\Source\Runtime\CoreUObject\Private\UObject\UObjectBase.cpp:909] 0x00007ffa8afcabc5 UnrealEditor-CoreUObject.dll!TBaseStaticDelegateInstance&lt;void __cdecl(FName,bool),FDefaultDelegateUserPolicy&gt;::ExecuteIfSafe() [D:\UE5_3_2\Engine\Source\Runtime\Core\Public\Delegates\DelegateInstancesImpl.h:777] 0x00007ffa81fc92e3 UnrealEditor-Core.dll!TMulticastDelegate&lt;void __cdecl(FName,bool),FDefaultDelegateUserPolicy&gt;::Broadcast() [D:\UE5_3_2\Engine\Source\Runtime\Core\Public\Delegates\DelegateSignatureImpl.inl:956] 0x00007ffa81ff59cb UnrealEditor-Core.dll!FModuleManager::LoadModuleWithFailureReason() [D:\UE5_3_2\Engine\Source\Runtime\Core\Private\Modules\ModuleManager.cpp:624] 0x00007ffac81b87ee UnrealEditor-Projects.dll!FModuleDescriptor::LoadModulesForPhase() [D:\UE5_3_2\Engine\Source\Runtime\Projects\Private\ModuleDescriptor.cpp:696] 0x00007ffac81b8c12 UnrealEditor-Projects.dll!FProjectManager::LoadModulesForProject()</ErrorMessage>
+		<CrashReporterMessage />
+		<AttendedStatus>Attended</AttendedStatus>
+		<ProcessId>15372</ProcessId>
+		<SecondsSinceStart>0</SecondsSinceStart>
+		<IsInternalBuild>false</IsInternalBuild>
+		<IsPerforceBuild>false</IsPerforceBuild>
+		<IsWithDebugInfo>true</IsWithDebugInfo>
+		<IsSourceDistribution>false</IsSourceDistribution>
+		<GameName>UE-Test</GameName>
+		<ExecutableName>UnrealEditor</ExecutableName>
+		<BuildConfiguration>Development</BuildConfiguration>
+		<GameSessionID />
+		<PlatformName>WindowsEditor</PlatformName>
+		<PlatformFullName>Win64 [Windows 11 (23H2) [10.0.22631.2861]  64b]</PlatformFullName>
+		<PlatformNameIni>Windows</PlatformNameIni>
+		<EngineMode>Editor</EngineMode>
+		<EngineModeEx>Unset</EngineModeEx>
+		<DeploymentName />
+		<EngineVersion>5.3.2-0+UE5</EngineVersion>
+		<EngineCompatibleVersion>5.3.2-0+UE5</EngineCompatibleVersion>
+		<CommandLine>CommandLineRemoved</CommandLine>
+		<LanguageLCID>0</LanguageLCID>
+		<AppDefaultLocale>ko-KR</AppDefaultLocale>
+		<BuildVersion>UE5-CL-0</BuildVersion>
+		<Symbols>UE5-CL-0-Win64-Development</Symbols>
+		<IsUERelease>true</IsUERelease>
+		<IsRequestingExit>false</IsRequestingExit>
+		<UserName />
+		<BaseDir>D:/AssortRock/ue5.3.2/Engine/Binaries/Win64/</BaseDir>
+		<RootDir>D:/AssortRock/ue5.3.2/</RootDir>
+		<MachineId>3DE7CFD545486D618F264A866A0A5711</MachineId>
+		<LoginId>3de7cfd545486d618f264a866a0a5711</LoginId>
+		<EpicAccountId>e58d053ff876495ba122a50b3acdccdd</EpicAccountId>
+		<SourceContext> 1636       #else 
+ 1637       	return EXCEPTION_EXECUTE_HANDLER;
+ 1638       #endif
+ 1639       }
+ 1640       
+ 1641       static void ReportEventOnCallingThread(ECrashContextType InType, const TCHAR* ErrorMessage, void* ProgramCounter)
+ 1642       {
+ 1643       #if !PLATFORM_SEH_EXCEPTIONS_DISABLED
+ 1644       	__try
+ 1645       #endif
+ 1646       	{
+ 1647       		FAssertInfo Info(ErrorMessage, ProgramCounter);
+ 1648       		ULONG_PTR Arguments[] = { (ULONG_PTR)&amp;Info };
+ 1649       		::RaiseException(EnsureExceptionCode, 0, UE_ARRAY_COUNT(Arguments), Arguments);
+ 1650 ***** 	}
+ 1651       #if !PLATFORM_SEH_EXCEPTIONS_DISABLED
+ 1652       	__except (ReportContinuableEventUsingCrashReportClient( InType, GetExceptionInformation(), GetCurrentThread(), GetCurrentThreadId(), ProgramCounter, ErrorMessage, IsInteractiveEnsureMode() ? EErrorReportUI::ShowDialog : EErrorReportUI::ReportInUnattendedMode))
+ 1653       		CA_SUPPRESS(6322)
+ 1654       	{
+ 1655       	}
+ 1656       #endif
+ 1657       }
+ 1658       
+ 1659       static void ReportEvent(ECrashContextType InType, const TCHAR* ErrorMessage, uint32 InThreadId, void* ProgramCounter)
+ 1660       {
+ 1661       	if (ReportCrashCallCount &gt; 0 || FDebug::HasAsserted())
+ 1662       	{
+ 1663       		// Don&apos;t report ensures after we&apos;ve crashed/asserted, they simply may be a result of the crash as
+ 1664       		// the engine is already in a bad state.
+ 1665       		return;</SourceContext>
+		<UserDescription>Sent in the unattended mode</UserDescription>
+		<UserActivityHint />
+		<CrashDumpMode>0</CrashDumpMode>
+		<GameStateName />
+		<Misc.NumberOfCores>6</Misc.NumberOfCores>
+		<Misc.NumberOfCoresIncludingHyperthreads>12</Misc.NumberOfCoresIncludingHyperthreads>
+		<Misc.Is64bitOperatingSystem>1</Misc.Is64bitOperatingSystem>
+		<Misc.CPUVendor>GenuineIntel</Misc.CPUVendor>
+		<Misc.CPUBrand>Intel(R) Core(TM) i5-10400F CPU @ 2.90GHz</Misc.CPUBrand>
+		<Misc.PrimaryGPUBrand>NVIDIA GeForce GTX 1650</Misc.PrimaryGPUBrand>
+		<Misc.OSVersionMajor>Windows 11 (23H2) [10.0.22631.2861]</Misc.OSVersionMajor>
+		<Misc.OSVersionMinor />
+		<MemoryStats.TotalPhysical>17043894272</MemoryStats.TotalPhysical>
+		<MemoryStats.TotalVirtual>25633828864</MemoryStats.TotalVirtual>
+		<MemoryStats.PageSize>4096</MemoryStats.PageSize>
+		<MemoryStats.TotalPhysicalGB>16</MemoryStats.TotalPhysicalGB>
+		<MemoryStats.AvailablePhysical>9963876352</MemoryStats.AvailablePhysical>
+		<MemoryStats.AvailableVirtual>14971678720</MemoryStats.AvailableVirtual>
+		<MemoryStats.UsedPhysical>2028257280</MemoryStats.UsedPhysical>
+		<MemoryStats.PeakUsedPhysical>2028482560</MemoryStats.PeakUsedPhysical>
+		<MemoryStats.UsedVirtual>2206015488</MemoryStats.UsedVirtual>
+		<MemoryStats.PeakUsedVirtual>2206019584</MemoryStats.PeakUsedVirtual>
+		<MemoryStats.bIsOOM>0</MemoryStats.bIsOOM>
+		<MemoryStats.OOMAllocationSize>0</MemoryStats.OOMAllocationSize>
+		<MemoryStats.OOMAllocationAlignment>0</MemoryStats.OOMAllocationAlignment>
+		<NumMinidumpFramesToIgnore>7</NumMinidumpFramesToIgnore>
+		<CallStack>UnrealEditor_Engine!USceneComponent::SetupAttachment() [D:\UE5_3_2\Engine\Source\Runtime\Engine\Private\Components\SceneComponent.cpp:1870]
+UnrealEditor_Test!AMyCharacter::AMyCharacter() [D:\AssortRock\Test\Source\Test\MyCharacter.cpp:37]
+UnrealEditor_CoreUObject!UClass::CreateDefaultObject() [D:\UE5_3_2\Engine\Source\Runtime\CoreUObject\Private\UObject\Class.cpp:4390]
+UnrealEditor_CoreUObject!UClass::InternalCreateDefaultObjectWrapper() [D:\UE5_3_2\Engine\Source\Runtime\CoreUObject\Private\UObject\Class.cpp:4987]
+UnrealEditor_CoreUObject!UObjectLoadAllCompiledInDefaultProperties() [D:\UE5_3_2\Engine\Source\Runtime\CoreUObject\Private\UObject\UObjectBase.cpp:825]
+UnrealEditor_CoreUObject!ProcessNewlyLoadedUObjects() [D:\UE5_3_2\Engine\Source\Runtime\CoreUObject\Private\UObject\UObjectBase.cpp:909]
+UnrealEditor_CoreUObject!TBaseStaticDelegateInstance&lt;void __cdecl(FName,bool),FDefaultDelegateUserPolicy&gt;::ExecuteIfSafe() [D:\UE5_3_2\Engine\Source\Runtime\Core\Public\Delegates\DelegateInstancesImpl.h:777]
+UnrealEditor_Core!TMulticastDelegate&lt;void __cdecl(FName,bool),FDefaultDelegateUserPolicy&gt;::Broadcast() [D:\UE5_3_2\Engine\Source\Runtime\Core\Public\Delegates\DelegateSignatureImpl.inl:956]
+UnrealEditor_Core!FModuleManager::LoadModuleWithFailureReason() [D:\UE5_3_2\Engine\Source\Runtime\Core\Private\Modules\ModuleManager.cpp:624]
+UnrealEditor_Projects!FModuleDescriptor::LoadModulesForPhase() [D:\UE5_3_2\Engine\Source\Runtime\Projects\Private\ModuleDescriptor.cpp:696]
+UnrealEditor_Projects!FProjectManager::LoadModulesForProject() [D:\UE5_3_2\Engine\Source\Runtime\Projects\Private\ProjectManager.cpp:62]
+UnrealEditor!FEngineLoop::LoadStartupModules() [D:\UE5_3_2\Engine\Source\Runtime\Launch\Private\LaunchEngineLoop.cpp:4671]
+UnrealEditor!FEngineLoop::PreInitPostStartupScreen() [D:\UE5_3_2\Engine\Source\Runtime\Launch\Private\LaunchEngineLoop.cpp:3942]
+UnrealEditor!GuardedMain() [D:\UE5_3_2\Engine\Source\Runtime\Launch\Private\Launch.cpp:140]
+UnrealEditor!GuardedMainWrapper() [D:\UE5_3_2\Engine\Source\Runtime\Launch\Private\Windows\LaunchWindows.cpp:118]
+UnrealEditor!LaunchWindowsStartup() [D:\UE5_3_2\Engine\Source\Runtime\Launch\Private\Windows\LaunchWindows.cpp:258]
+UnrealEditor!WinMain() [D:\UE5_3_2\Engine\Source\Runtime\Launch\Private\Windows\LaunchWindows.cpp:298]
+UnrealEditor!__scrt_common_main_seh() [D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:288]
+kernel32
+ntdll</CallStack>
+		<PCallStack>UnrealEditor-Engine 0x00007ffa78100000 + ec6630 UnrealEditor-Test 0x00007ffa54a50000 + 64e7 UnrealEditor-CoreUObject 0x00007ffa8abf0000 + 1fd412 UnrealEditor-CoreUObject 0x00007ffa8abf0000 + 21d163 UnrealEditor-CoreUObject 0x00007ffa8abf0000 + 54e9d9 UnrealEditor-CoreUObject 0x00007ffa8abf0000 + 52b410 UnrealEditor-CoreUObject 0x00007ffa8abf0000 + 3dabc5 UnrealEditor-Core 0x00007ffa81b60000 + 4692e3 UnrealEditor-Core 0x00007ffa81b60000 + 4959cb UnrealEditor-Projects 0x00007ffac8180000 + 387ee UnrealEditor-Projects 0x00007ffac8180000 + 38c12 UnrealEditor 0x00007ff776ab0000 + 324dc UnrealEditor 0x00007ff776ab0000 + 3634f UnrealEditor 0x00007ff776ab0000 + 2cfb6 UnrealEditor 0x00007ff776ab0000 + 2d37a UnrealEditor 0x00007ff776ab0000 + 30854 UnrealEditor 0x00007ff776ab0000 + 46984 UnrealEditor 0x00007ff776ab0000 + 49d7a KERNEL32 0x00007ffadc910000 + 1257d ntdll 0x00007ffadd730000 + 5aa58</PCallStack>
+		<PCallStackHash>38E1411A44D782BE361CC62E7D5A215562CE83B5</PCallStackHash>
+		<Threads>
+			<Thread>
+				<CallStack>KERNELBASE 0x00007ffadaaa0000 + 6567c UnrealEditor-Core 0x00007ffa81b60000 + 603de8 UnrealEditor-Core 0x00007ffa81b60000 + 603c1b UnrealEditor-Core 0x00007ffa81b60000 + 3a6627 UnrealEditor-Core 0x00007ffa81b60000 + 3bf4a5 UnrealEditor-Core 0x00007ffa81b60000 + c996f2 UnrealEditor-Engine 0x00007ffa78100000 + 2d1a6c2 UnrealEditor-Engine 0x00007ffa78100000 + ec6630 UnrealEditor-Test 0x00007ffa54a50000 + 64e7 UnrealEditor-CoreUObject 0x00007ffa8abf0000 + 1fd412 UnrealEditor-CoreUObject 0x00007ffa8abf0000 + 21d163 UnrealEditor-CoreUObject 0x00007ffa8abf0000 + 54e9d9 UnrealEditor-CoreUObject 0x00007ffa8abf0000 + 52b410 UnrealEditor-CoreUObject 0x00007ffa8abf0000 + 3dabc5 UnrealEditor-Core 0x00007ffa81b60000 + 4692e3 UnrealEditor-Core 0x00007ffa81b60000 + 4959cb UnrealEditor-Projects 0x00007ffac8180000 + 387ee UnrealEditor-Projects 0x00007ffac8180000 + 38c12 UnrealEditor 0x00007ff776ab0000 + 324dc UnrealEditor 0x00007ff776ab0000 + 3634f UnrealEditor 0x00007ff776ab0000 + 2cfb6 UnrealEditor 0x00007ff776ab0000 + 2d37a UnrealEditor 0x00007ff776ab0000 + 30854 UnrealEditor 0x00007ff776ab0000 + 46984 UnrealEditor 0x00007ff776ab0000 + 49d7a KERNEL32 0x00007ffadc910000 + 1257d ntdll 0x00007ffadd730000 + 5aa58</CallStack>
+				<IsCrashed>true</IsCrashed>
+				<Registers />
+				<ThreadID>8600</ThreadID>
+				<ThreadName>GameThread</ThreadName>
+			</Thread>
+		</Threads>
+		<TimeOfCrash>638511762331530000</TimeOfCrash>
+		<bAllowToBeContacted>1</bAllowToBeContacted>
+		<CPUBrand>Intel(R) Core(TM) i5-10400F CPU @ 2.90GHz</CPUBrand>
+		<CrashReportClientVersion>1.0</CrashReportClientVersion>
+		<Modules>D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AIGraph.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-GameplayTasksEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-StringTableEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Overlay.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-OverlayEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ClothingSystemRuntimeNv.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ClothingSystemEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AnimationDataController.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-WorldPartitionEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\AndroidFileServer\Binaries\Win64\UnrealEditor-AndroidFileServer.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\WebMMoviePlayer\Binaries\Win64\UnrealEditor-WebMMoviePlayer.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-BehaviorTreeEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Media\WebMMedia\Binaries\Win64\UnrealEditor-WebMMedia.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\WindowsMoviePlayer\Binaries\Win64\UnrealEditor-WindowsMoviePlayer.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\EnhancedInput\Binaries\Win64\UnrealEditor-EnhancedInput.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\EnhancedInput\Binaries\Win64\UnrealEditor-InputEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\EnhancedInput\Binaries\Win64\UnrealEditor-InputBlueprintNodes.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\RigVM\Binaries\Win64\UnrealEditor-RigVM.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-VisualGraphUtils.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\RigVM\Binaries\Win64\UnrealEditor-RigVMDeveloper.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Animation\ControlRig\Binaries\Win64\UnrealEditor-ControlRig.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Animation\AnimationData\Binaries\Win64\UnrealEditor-AnimationData.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\RigVM\Binaries\Win64\UnrealEditor-RigVMEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Animation\ControlRig\Binaries\Win64\UnrealEditor-ControlRigDeveloper.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Experimental\FullBodyIK\Binaries\Win64\UnrealEditor-PBIK.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Animation\IKRig\Binaries\Win64\UnrealEditor-IKRig.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Animation\IKRig\Binaries\Win64\UnrealEditor-IKRigDeveloper.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\VirtualProduction\Takes\Binaries\Win64\UnrealEditor-TakesCore.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\VirtualProduction\Takes\Binaries\Win64\UnrealEditor-TakeMovieScene.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\VirtualProduction\Takes\Binaries\Win64\UnrealEditor-TakeTrackRecorders.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\VirtualProduction\Takes\Binaries\Win64\UnrealEditor-TakeRecorder.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Experimental\ChaosCaching\Binaries\Win64\UnrealEditor-ChaosCachingEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-LocalizationCommandletExecution.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TranslationEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-UndoHistory.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-UndoHistoryEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MainFrame.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-HotReload.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-PixelInspectorModule.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Experimental\FullBodyIK\Binaries\Win64\UnrealEditor-FullBodyIK.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Editor\ContentBrowser\ContentBrowserFileDataSource\Binaries\Win64\UnrealEditor-ContentBrowserFileDataSource.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Experimental\PythonScriptPlugin\Binaries\Win64\UnrealEditor-PythonScriptPlugin.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Experimental\StructUtils\Binaries\Win64\UnrealEditor-StructUtils.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\AI\EnvironmentQueryEditor\Binaries\Win64\UnrealEditor-EnvironmentQueryEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\FX\Niagara\Binaries\Win64\UnrealEditor-Niagara.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\FX\Niagara\Binaries\Win64\UnrealEditor-NiagaraAnimNotifies.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\SignificanceManager\Binaries\Win64\UnrealEditor-SignificanceManager.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SessionFrontend.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\FX\Niagara\Binaries\Win64\UnrealEditor-NiagaraEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Developer\AnimationSharing\Binaries\Win64\UnrealEditor-AnimationSharing.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Developer\PropertyAccessNode\Binaries\Win64\UnrealEditor-PropertyAccessNode.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TraceInsights.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Developer\TraceDataFiltering\Binaries\Win64\UnrealEditor-TraceDataFiltering.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Interchange\Runtime\Binaries\Win64\UnrealEditor-InterchangeNodes.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Interchange\Runtime\Binaries\Win64\UnrealEditor-InterchangeFactoryNodes.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Interchange\Runtime\Binaries\Win64\UnrealEditor-GLTFCore.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Interchange\Runtime\Binaries\Win64\UnrealEditor-InterchangeCommonParser.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Enterprise\VariantManager\Binaries\Win64\UnrealEditor-VariantManager.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Interchange\Runtime\Binaries\Win64\UnrealEditor-InterchangeDispatcher.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Interchange\Runtime\Binaries\Win64\UnrealEditor-InterchangeImport.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Media\ImgMedia\Binaries\Win64\UnrealEditor-ImgMediaEngine.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor.exe
+D:\AssortRock\Test\Binaries\Win64\UnrealEditor-Test.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\MsQuic\Binaries\Win64\UnrealEditor-MsQuicRuntime.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\Synthesis\Binaries\Win64\UnrealEditor-Synthesis.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\SoundFields\Binaries\Win64\UnrealEditor-SoundFields.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\ProceduralMeshComponent\Binaries\Win64\UnrealEditor-ProceduralMeshComponent.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\PropertyAccess\Binaries\Win64\UnrealEditor-PropertyAccessEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\Metasound\Binaries\Win64\UnrealEditor-MetasoundEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\AudioWidgets\Binaries\Win64\UnrealEditor-AudioWidgets.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AdvancedWidgets.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\Metasound\Binaries\Win64\UnrealEditor-MetasoundEngineTest.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\Metasound\Binaries\Win64\UnrealEditor-MetasoundEngine.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\WaveTable\Binaries\Win64\UnrealEditor-WaveTable.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AudioCodecEngine.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\Metasound\Binaries\Win64\UnrealEditor-MetasoundStandardNodes.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\Metasound\Binaries\Win64\UnrealEditor-MetasoundGenerator.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\Metasound\Binaries\Win64\UnrealEditor-MetasoundFrontend.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\Metasound\Binaries\Win64\UnrealEditor-MetasoundGraphCore.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\LocationServicesBPLibrary\Binaries\Win64\UnrealEditor-LocationServicesBPLibrary.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\CustomMeshComponent\Binaries\Win64\UnrealEditor-CustomMeshComponent.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\CableComponent\Binaries\Win64\UnrealEditor-CableComponent.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\AudioSynesthesia\Binaries\Win64\UnrealEditor-AudioSynesthesia.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AudioAnalyzer.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\AudioSynesthesia\Binaries\Win64\UnrealEditor-AudioSynesthesiaCore.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Cameras\GameplayCameras\Binaries\Win64\UnrealEditor-GameplayCameras.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\MovieScene\TemplateSequence\Binaries\Win64\UnrealEditor-TemplateSequence.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\2D\Paper2D\Binaries\Win64\UnrealEditor-Paper2D.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Messaging\UdpMessaging\Binaries\Win64\UnrealEditor-UdpMessaging.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Messaging\TcpMessaging\Binaries\Win64\UnrealEditor-TcpMessaging.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Serialization.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Editor\GameplayTagsEditor\Binaries\Win64\UnrealEditor-GameplayTagsEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Editor\FacialAnimation\Binaries\Win64\UnrealEditor-FacialAnimationEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Editor\FacialAnimation\Binaries\Win64\UnrealEditor-FacialAnimation.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Editor\DataValidation\Binaries\Win64\UnrealEditor-DataValidation.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Blutility.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Editor\AssetManagerEditor\Binaries\Win64\UnrealEditor-AssetManagerEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TreeMap.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\MovieScene\ActorSequence\Binaries\Win64\UnrealEditor-ActorSequence.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Interchange\Runtime\Binaries\Win64\UnrealEditor-InterchangePipelines.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Experimental\ProxyLODPlugin\Binaries\Win64\UnrealEditor-ProxyLODMeshReduction.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Persona.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\ThirdParty\ShaderConductor\Win64\dxcompiler.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-NaniteBuilder.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-NaniteUtilities.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MeshBoneReduction.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Experimental\SkeletalReduction\Binaries\Win64\UnrealEditor-SkeletalMeshReduction.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\tbb.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-QuadricMeshReduction.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MeshUtilities.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-UMGEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-PinnedCommandList.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-FunctionalTesting.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AutomationController.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-GeometryProcessingInterfaces.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MeshReductionInterface.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\ThirdParty\ShaderConductor\Win64\ShaderConductor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-VulkanShaderFormat.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ShaderFormatOpenGL.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-CollisionAnalyzer.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\ThirdParty\ShaderConductor\Win64\dxil.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ShaderFormatD3D.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AutomationMessages.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AutomationTest.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-WorkspaceMenuStructure.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ScriptableEditorWidgets.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SlateReflector.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-LandscapeEditorUtilities.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MRMesh.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Messaging.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ShaderFormatVectorVM.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-LiveCoding.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-VectorVM.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TargetDeviceServices.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ShaderPreprocessor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ShaderCompilerCommon.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-FileUtilities.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AudioFormatBink.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AudioFormatADPCM.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\ThirdParty\Vorbis\Win64\VS2015\libvorbis_64.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\ThirdParty\Ogg\Win64\VS2015\libogg_64.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AudioFormatOpus.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-WindowsTargetPlatform.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\oo2tex_win64_2.9.10.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\oo2tex_win64_2.9.9.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\oo2tex_win64_2.9.8.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\oo2tex_win64_2.9.7.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\D3D12\D3D12Core.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AudioFormatOgg.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\Android\UnrealEditor-AndroidTargetPlatform.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\oo2tex_win64_2.9.6.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-CookedEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SourceCodeAccess.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\oo2tex_win64_2.9.5.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-NullInstallBundleManager.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Developer\TextureFormatOodle\Binaries\Win64\UnrealEditor-TextureFormatOodle.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TextureFormatUncompressed.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TextureFormatIntelISPCTexComp.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TextureFormatETC2.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TextureFormatDXT.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TextureFormatASTC.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TextureBuild.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TextureFormat.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TurnkeySupport.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-LauncherServices.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TargetPlatform.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Settings.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-WindowsPlatformFeatures.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-GameplayMediaEncoder.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AVEncoder.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\ThirdParty\NVIDIA\NVaftermath\Win64\GFSDK_Aftermath_Lib.x64.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-D3D12RHI.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-RHICore.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\WindowsDeviceProfileSelector\Binaries\Win64\UnrealEditor-WindowsDeviceProfileSelector.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\ExampleDeviceProfileSelector\Binaries\Win64\UnrealEditor-ExampleDeviceProfileSelector.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Runtime\ChunkDownloader\Binaries\Win64\UnrealEditor-ChunkDownloader.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Media\WmfMedia\Binaries\Win64\UnrealEditor-WmfMedia.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Media\WmfMedia\Binaries\Win64\UnrealEditor-WmfMediaFactory.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Media\ImgMedia\Binaries\Win64\UnrealEditor-ExrReaderGpu.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Enterprise\GLTFExporter\Binaries\Win64\UnrealEditor-GLTFExporter.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MeshMergeUtilities.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Enterprise\DatasmithContent\Binaries\Win64\UnrealEditor-DatasmithContent.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Enterprise\VariantManagerContent\Binaries\Win64\UnrealEditor-VariantManagerContent.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Online\OnlineSubsystemUtils\Binaries\Win64\UnrealEditor-OnlineBlueprintSupport.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Online\OnlineSubsystemNull\Binaries\Win64\UnrealEditor-OnlineSubsystemNull.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Online\OnlineSubsystemUtils\Binaries\Win64\UnrealEditor-OnlineSubsystemUtils.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Voice.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-XMPP.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-WebSockets.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Online\OnlineSubsystem\Binaries\Win64\UnrealEditor-OnlineSubsystem.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Online\OnlineServices\Binaries\Win64\UnrealEditor-OnlineServicesCommonEngineUtils.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Online\OnlineServices\Binaries\Win64\UnrealEditor-OnlineServicesCommon.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Online\OnlineServices\Binaries\Win64\UnrealEditor-OnlineServicesInterface.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Developer\RenderDocPlugin\Binaries\Win64\UnrealEditor-RenderDocPlugin.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\FX\Niagara\Binaries\Win64\UnrealEditor-NiagaraShader.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\FX\Niagara\Binaries\Win64\UnrealEditor-NiagaraVertexFactories.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Experimental\ChaosCloth\Binaries\Win64\UnrealEditor-ChaosCloth.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Experimental\ChaosCaching\Binaries\Win64\UnrealEditor-ChaosCaching.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Developer\PerforceSourceControl\Binaries\Win64\UnrealEditor-PerforceSourceControl.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Developer\PlasticSourceControl\Binaries\Win64\UnrealEditor-PlasticSourceControl.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Experimental\PlatformCrypto\Binaries\Win64\UnrealEditor-PlatformCrypto.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Experimental\PlatformCrypto\Binaries\Win64\UnrealEditor-PlatformCryptoOpenSSL.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\ThirdParty\Python3\Win64\python39.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\XGEController\Binaries\Win64\UnrealEditor-XGEController.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\ThirdParty\DbgHelp\dbghelp.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AnimationModifiers.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\ThirdParty\libsndfile\Win64\libsndfile-1.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AudioEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MessageLog.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Virtualization.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SlateRHIRenderer.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-NetworkFile.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-StorageServerClient.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SequenceRecorder.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-LiveLinkInterface.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-GameplayDebugger.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ChaosSolverEngine.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-FieldSystemEngine.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MeshConversion.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-S3Client.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SequencerWidgets.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MovieSceneCapture.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MovieSceneTools.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SequencerCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ContentBrowser.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-VirtualTexturingEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AudioSettingsEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ComponentVisualizers.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AIModule.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-InternationalizationSettings.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ContentBrowserData.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\OpenColorIO_2_2.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-GeometryCollectionEngine.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Navmesh.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-IoStoreOnDemand.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Sequencer.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-HeadMountedDisplay.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Constraints.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SourceControlWindows.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-DetailCustomizations.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-EditorStyle.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SceneOutliner.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AnimGraphRuntime.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ClassViewer.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-UELibSampleRate.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-KismetCompiler.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-KismetWidgets.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-GeometryCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Renderer.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AssetTools.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-DataflowCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ToolWidgets.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-PhysicsUtilities.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-InterchangeCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-InteractiveToolsFramework.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-NavigationSystem.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Localization.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-BlueprintGraph.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SubobjectEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TraceServices.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-IoStoreUtilities.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MovieSceneTracks.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MovieScene.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-LevelEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-GraphEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-PropertyEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MaterialEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ImageWrapper.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Chaos.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Kismet.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Engine.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MediaAssets.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\libfbxsdk.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Experimental\PlatformCrypto\Binaries\Win64\UnrealEditor-PlatformCryptoTypes.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-StatusBar.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AVIWriter.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AnimationCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AnimationBlueprintLibrary.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\FastBuildController\Binaries\Win64\UnrealEditor-FastBuildController.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-DerivedDataEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-VREditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ViewportInteraction.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AnimGraph.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-UMG.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-GameProjectGeneration.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-InterchangeEngine.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-FoliageEdit.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Landscape.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AppFramework.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-UnrealEd.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Core.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-GameplayTasks.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SourceControl.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SlateCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Slate.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-EditorConfig.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ConfigEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-EditorWidgets.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MaterialBaking.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AdvancedPreviewScene.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-StreamingFile.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SubobjectDataInterface.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-UnsavedAssetsTracker.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-EditorInteractiveToolsFramework.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-DesktopWidgets.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SharedSettingsWidgets.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ToolMenus.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-DataflowEngine.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SSL.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-CoreUObject.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MeshBuilderCommon.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-PakFileUtilities.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-BuildPatchServices.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SerializedRecorderInterface.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-PIEPreviewDeviceProfileSelector.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Foliage.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-PropertyPath.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-HTTP.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-CommonMenuExtensions.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-WidgetCarousel.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Voronoi.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MeshUtilitiesEngine.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-HardwareTargeting.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-CurveEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-IrisCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Cbor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-DerivedDataCache.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SceneDepthPickerMode.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ClothingSystemRuntimeCommon.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-WidgetRegistration.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Zen.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-PIEPreviewDeviceSpecification.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AddContentDialog.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ActorPickerMode.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-UncontrolledChangelists.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-EventLoop.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AnimationEditMode.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TraceAnalysis.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-StatsViewer.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MeshUtilitiesCommon.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-EditorFramework.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Online\OnlineBase\Binaries\Win64\UnrealEditor-OnlineBase.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SignalProcessing.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-VirtualFileCache.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ChaosCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Networking.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-DirectoryWatcher.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-DataLayerEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Animation\ACLPlugin\Binaries\Win64\UnrealEditor-ACLPlugin.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-BlueprintEditorLibrary.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SkeletalMeshUtilitiesCommon.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-OpenColorIOWrapper.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-LevelSequence.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-RSA.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MeshBuilder.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-PhysicsCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ReliabilityHandlerComponent.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TimeManagement.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TelemetryUtils.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-CinematicCamera.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-BSPUtils.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-PakFile.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MeshDescription.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AudioLinkEngine.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AudioExtensions.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SoundFieldRendering.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-EditorSubsystem.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-StaticMeshDescription.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-GameplayTags.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AssetDefinition.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-UnrealEdMessages.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-HierarchicalLODUtilities.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SandboxFile.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AssetRegistry.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ScriptDisassembler.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-RenderCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TextureUtilitiesCommon.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SwarmInterface.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-NetCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AudioMixer.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AnalyticsET.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AssetTagsEditor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-IESFile.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ImageWriteQueue.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-CookMetadata.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ClothingSystemRuntimeInterface.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-CookOnTheFly.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MaterialUtilities.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Json.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MaterialShaderQualitySettings.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TypedElementFramework.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-DesktopPlatform.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Media.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-SkeletalMeshDescription.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TextureBuildUtilities.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Sockets.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AudioLinkCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ApplicationCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-DeveloperSettings.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-PacketHandler.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-EngineSettings.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MediaUtils.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-RHI.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-JsonUtilities.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TextureCompressor.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-DeveloperToolSettings.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Icmp.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TypedElementRuntime.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-NetworkReplayStreaming.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-InstallBundleManager.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Projects.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-InputCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AudioPlatformConfiguration.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Analytics.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\ThirdParty\Vorbis\Win64\VS2015\libvorbisfile_64.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ImageCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\ThirdParty\Python3\Win64\python3.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-EngineMessages.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-FieldNotification.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-CoreOnline.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-PreLoadScreen.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-XmlParser.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\tbbmalloc.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ClothingSystemEditorInterface.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-RawMesh.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\ThirdParty\Windows\WinPixEventRuntime\x64\WinPixEventRuntime.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-ColorManagement.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-AudioMixerCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-Horde.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-EditorAnalyticsSession.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-BuildSettings.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MoviePlayer.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Developer\PixWinPlugin\Binaries\Win64\UnrealEditor-PixWinPlugin.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Portal\LauncherChunkInstaller\Binaries\Win64\UnrealEditor-LauncherChunkInstaller.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\FX\Niagara\Binaries\Win64\UnrealEditor-NiagaraCore.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-TraceLog.dll
+D:\AssortRock\ue5.3.2\Engine\Binaries\Win64\UnrealEditor-MoviePlayerProxy.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\AI\AISupport\Binaries\Win64\UnrealEditor-AISupportModule.dll
+D:\AssortRock\ue5.3.2\Engine\Plugins\Experimental\PythonScriptPlugin\Binaries\Win64\UnrealEditor-PythonScriptPluginPreload.dll</Modules>
+	</RuntimeProperties>
+	<PlatformProperties>
+		<PlatformIsRunningWindows>1</PlatformIsRunningWindows>
+		<IsRunningOnBattery>false</IsRunningOnBattery>
+		<PlatformCallbackResult>0</PlatformCallbackResult>
+		<CrashTrigger>0</CrashTrigger>
+	</PlatformProperties>
+	<EngineData>
+		<MatchingDPStatus>WindowsNo errors</MatchingDPStatus>
+		<RHI.IntegratedGPU>false</RHI.IntegratedGPU>
+		<RHI.DriverDenylisted>false</RHI.DriverDenylisted>
+		<RHI.D3DDebug>false</RHI.D3DDebug>
+		<RHI.Breadcrumbs>true</RHI.Breadcrumbs>
+		<RHI.DRED>false</RHI.DRED>
+		<RHI.DREDMarkersOnly>true</RHI.DREDMarkersOnly>
+		<RHI.DREDContext>false</RHI.DREDContext>
+		<RHI.Aftermath>true</RHI.Aftermath>
+		<RHI.RHIName>D3D12</RHI.RHIName>
+		<RHI.AdapterName>NVIDIA GeForce GTX 1650</RHI.AdapterName>
+		<RHI.UserDriverVersion>546.29</RHI.UserDriverVersion>
+		<RHI.InternalDriverVersion>31.0.15.4629</RHI.InternalDriverVersion>
+		<RHI.DriverDate>11-29-2023</RHI.DriverDate>
+		<RHI.FeatureLevel>SM6</RHI.FeatureLevel>
+		<RHI.GPUVendor>NVIDIA</RHI.GPUVendor>
+		<RHI.DeviceId>1F82</RHI.DeviceId>
+		<DeviceProfile.Name>WindowsEditor</DeviceProfile.Name>
+	</EngineData>
+	<GameData />
+</FGenericCrashContext>
